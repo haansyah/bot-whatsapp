@@ -1,0 +1,23 @@
+{
+  "name": "whatsapp-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "adhan": "^4.4.3",
+    "axios": "^1.6.7",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.23.0"
+  },
+  "scripts": {
+    "test": "test",
+    "start": "nodemon index.js",
+    "build": "echo Build...",
+    "build:watch": "npm run build && npm run start"
+  },
+  "keywords": [
+    "BOT"
+  ],
+  "author": "haansyah",
+  "license": "ISC"
+}
