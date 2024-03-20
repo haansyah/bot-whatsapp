@@ -4,7 +4,16 @@ const config = require("./config.json");
 const { Client } = require("whatsapp-web.js");
 const adhan = require("adhan");
 const client = new Client();
-const targetNumber = "6281299115053@c.us";
+// const targetNumber = "6281299115053@c.us";
+const targetNumber = "6287883762759@c.us"; //tiffany number
+const items = [
+  { waktu: "🌅 Subuh", jadwal: "4.41" },
+  { waktu: "⛅ Dhuha", jadwal: "6.30" },
+  { waktu: "🌞 Dzuhur", jadwal: "12.02" },
+  { waktu: "🌤️ Ashar", jadwal: "15.10" },
+  { waktu: "🌆 Maghrib", jadwal: "18.07" },
+  { waktu: "🌃 Isya", jadwal: "19.16" },
+];
 
 client.on("qr", (qr) => {
   qrcode.generate(qr, { small: true });
@@ -13,14 +22,29 @@ client.on("qr", (qr) => {
 client.on("ready", () => {
   console.log("Client is ready!");
 
-  scheduleMessage(3, 1, "Ayang Sahurrr");
-  scheduleMessage(3, 5, "Ayang Sahur!");
-  scheduleMessage(4, 41, "Ayang Sholat Subuh");
-  scheduleMessage(7, 5, "Semangat Harinya Ayang");
-  scheduleMessage(12, 3, "Ayang Sholat Zuhur!");
-  scheduleMessage(15, 9, "Ayang Sholat Ashar");
-  scheduleMessage(18, 7, "Ayang Bukaaa! Jangan lupa Sholat Maghrib");
-  scheduleMessage(19, 1, "Ayang Terawehhhh");
+  for (const item of items) {
+    const [jam, menit] = item.jadwal.split(".").map(Number);
+    const pesan = `🕌 Assalamualaikum Tiffany,
+  
+Hi Tiffany, I hope this day is blessed for you. Remember to take a moment out of your busy schedule to get closer to Allah. Here is today's prayer time schedule for you:
+    
+${item.waktu} ${item.jadwal}
+    
+Don't forget to manage your time and take the time to pray. May Allah always bless your every step. Greetings from me, and may this day be filled with peace and happiness. If you need anything, I am here for you.
+    
+Wassalamualaikum. 🤲🌟
+Your lovely Ayang🤍🤍`;
+
+    scheduleMessage(jam, menit, pesan);
+  }
+
+  // scheduleMessage(3, 5, "Ayang Sahur!");
+  // scheduleMessage(4, 41, "Ayang Sholat Subuh");
+  // scheduleMessage(7, 5, "Semangat Harinya Ayang");
+  // scheduleMessage(12, 3, "Ayang Sholat Zuhur!");
+  // scheduleMessage(15, 15, "Ayang Sholat Ashar");
+  // scheduleMessage(18, 7, "Ayang Bukaaa! Jangan lupa Sholat Maghrib");
+  // scheduleMessage(19, 1, "Ayang Terawehhhh");
 
   function scheduleMessage(hour, minutes, message) {
     const now = new Date();
